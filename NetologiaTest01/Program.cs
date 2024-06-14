@@ -37,21 +37,45 @@ namespace NetologiaTest01
                 {
                     case "+":
                         Console.WriteLine("Result of {0} + {1} = {2}", a, b, a + b);
+                        Console.WriteLine("In binary: "); 
+                        Console.WriteLine(Convert.ToString(a + b, 2));
+                        Console.WriteLine("In hexadecimal: ");
+                        Console.WriteLine(Convert.ToString(a + b, 16));
                         break;
                     case "-":
                         Console.WriteLine("Result of {0} - {1} = {2}", a, b, a - b);
+                        Console.WriteLine("In binary: ");
+                        Console.WriteLine(Convert.ToString(a - b, 2));
+                        Console.WriteLine("In hexadecimal: ");
+                        Console.WriteLine(Convert.ToString(a - b, 16));
                         break;
                     case "*":
                         Console.WriteLine("Result of {0} * {1} = {2}", a, b, a * b);
+                        Console.WriteLine("In binary: ");
+                        Console.WriteLine(Convert.ToString(a * b, 2));
+                        Console.WriteLine("In hexadecimal: ");
+                        Console.WriteLine(Convert.ToString(a * b, 16));
                         break;
                     case "/":
                         Console.WriteLine("Result of {0} / {1} = {2}", a, b, a / b);
+                        Console.WriteLine("In binary: ");
+                        Console.WriteLine(Convert.ToString(a / b, 2));
+                        Console.WriteLine("In hexadecimal: ");
+                        Console.WriteLine(Convert.ToString(a / b, 16));
                         break;
                     case "&":
                         Console.WriteLine("Result of {0} & {1} = {2}", a, b, a & b);
+                        Console.WriteLine("In binary: ");
+                        Console.WriteLine(Convert.ToString(a & b, 2));
+                        Console.WriteLine("In hexadecimal: ");
+                        Console.WriteLine(Convert.ToString(a & b, 16));
                         break;
                     case "^":
                         Console.WriteLine("Result of {0} ^ {1} = {2}", a, b, a ^ b);
+                        Console.WriteLine("In binary: ");
+                        Console.WriteLine(Convert.ToString(a ^ b, 2));
+                        Console.WriteLine("In hexadecimal: ");
+                        Console.WriteLine(Convert.ToString(a ^ b, 16));
                         break;
                     default:
                         Console.WriteLine("Wrong sign!");
