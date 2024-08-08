@@ -33,13 +33,13 @@ namespace NetologiaTest02_Array
 
 
 
-            // Exercise 3
+            // Exercise 3 - Возведение в степерь
 
-            int[,] myArray03 = new int[3, 3] 
+            double[,] myArray03 = new double[3, 3]
             {
-            { 2, 3, 4  },
-            { 4, 9, 16, },
-            { 8, 27, 64, }
+            { Math.Pow(2,1), Math.Pow(3,1), Math.Pow(4,1)  },
+            { Math.Pow(2,2), Math.Pow(3,2), Math.Pow(4,2), },
+            { Math.Pow(2,3), Math.Pow(3,3), Math.Pow(4,3), }
             };
 
 
