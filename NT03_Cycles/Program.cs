@@ -50,22 +50,6 @@ namespace NT03_Cycles
 
 
 
-            // Alternative Exercise 2 
-
-            // Закомментирован вариант на случай если нужно вывести четные числа от 2 до 20 из массива в Exercise 1.
-
-            //Console.WriteLine("\n\nAlternative Exercise 2: ");
-
-            //for (int i = 0; i < myArray01.Length; i++)
-            //{
-            //    if (myArray01[i] % 2 == 0 && myArray01[i] >= 2 && myArray01[i] <= 20)
-            //    {
-            //        Console.Write(myArray01[i] + "\t");
-            //    }
-            //}
-
-
-
             // Exercise 3
 
             Console.WriteLine("\n\nExercise 3: ");
