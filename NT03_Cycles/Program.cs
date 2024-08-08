@@ -44,8 +44,18 @@ namespace NT03_Cycles
                 if (myArray02[i] % 2 == 0 && myArray02[i] >= 2 && myArray02[i] <= 20)
                 {
                     Console.Write(myArray02[i] + "\t");
-                }
-                    
+                }  
+            }
+
+
+
+            // Exercise 2_2 - от 2 до 20 нужно вывести четные числа
+
+            Console.WriteLine("\n\nExercise 2_2: ");
+
+            for (int i = 2; i <= 20; i+=2)
+            {
+                Console.Write($"{i} ");
             }
 
 
