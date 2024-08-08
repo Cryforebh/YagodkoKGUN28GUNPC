@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetologiaTest01
+namespace NetologiaTest01_Сalculator
 {
     internal class Program
     {
