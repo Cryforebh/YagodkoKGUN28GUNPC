@@ -99,7 +99,7 @@ namespace NetologiaTest02_Array
             }
 
             Console.ReadLine();
-            Console.WriteLine(); Console.WriteLine();
+            Console.WriteLine("\n\n");
 
 
 
@@ -145,7 +145,7 @@ namespace NetologiaTest02_Array
             }
 
             Console.ReadLine();
-            Console.WriteLine(); Console.WriteLine();
+            Console.WriteLine("\n\n");
 
 
 
@@ -161,7 +161,7 @@ namespace NetologiaTest02_Array
             }
 
             Console.ReadLine();
-            Console.WriteLine(); Console.WriteLine();
+            Console.WriteLine("\n\n");
 
 
 
