@@ -92,28 +92,28 @@ namespace Class
         {
             _weaponEquip = true;
             _weapon = weapon;
-            Console.WriteLine($"{_weapon.Name} - эккиперованно!");
+            Console.WriteLine($"{_weapon.Name} - экипировано!");
         }
 
         public void EquipHelm(Helm helm) // Снарядить Helm
         {
             _helmEquip = true;
             _helm = helm;
-            Console.WriteLine($"{_helm.Name} - эккиперованно!");
+            Console.WriteLine($"{_helm.Name} - экипировано!");
         }
 
         public void EquipShell(Shell shell) // Снарядить Shell
         {
             _shellEquip = true;
             _shell = shell;
-            Console.WriteLine($"{_shell.Name} - эккиперованно!");
+            Console.WriteLine($"{_shell.Name} - экипировано!");
         }
 
         public void EquipBoots(Boots boots) // Снарядить Boots
         {
             _bootsEquip = true;
             _boots = boots;
-            Console.WriteLine($"{_boots.Name} - эккиперованно!");
+            Console.WriteLine($"{_boots.Name} - экипировано!");
         }
 
         public void Info()
