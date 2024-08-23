@@ -59,8 +59,4 @@ namespace Class
         }
     }
 
-    public class Armor
-    {
-
-    }
 }

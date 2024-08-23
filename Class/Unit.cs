@@ -9,7 +9,6 @@ namespace Class
 {
     public class Unit
     {
-        private string _name;
         private float _health;
         private float _baseDamage = 5f;
         private Weapon _weapon;
@@ -21,7 +20,6 @@ namespace Class
         private bool _shellEquip = false;
         private bool _bootsEquip = false;
         private float _weaponDamage;
-        private float _armorLevel;
 
         public string Name { get; }
 
@@ -116,20 +114,6 @@ namespace Class
             _bootsEquip = true;
             _boots = boots;
             Console.WriteLine($"{_boots.Name} - эккиперованно!");
-        }
-
-        public void ArmorError(float armor)
-        {
-            var resutl = armor;
-            if (resutl < 0f)
-            {
-                Console.WriteLine($"Некорректно задан уровень брони, общий показатель был установлен на минимально допустимое значение!");
-            }
-            else if (resutl > 1f)
-            {
-                Console.WriteLine($"Некорректно задан уровень брони, общий показатель был установлен на максимально допустимое значение!");
-            }
-            
         }
 
         public void Info()
