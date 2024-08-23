@@ -116,9 +116,9 @@ namespace Class
             Console.WriteLine($"{_boots.Name} - эккиперованно!");
         }
 
-        public void Info()
-        {
-            Console.WriteLine($"{Name}, {_health}, {Armor}, {RealHealth()}");
-        }
+        //public void Info()
+        //{
+        //    Console.WriteLine($"{Name}, {_health}, {Armor}, {RealHealth()}");
+        //}
     }
 }
