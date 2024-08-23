@@ -1,273 +1,236 @@
 ﻿using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Class
 {
 
-    public class Weapon // Класс оружия
-    {
-        private string _name;
-        private float _damage;
-        private float _minDamage;
-        private float _maxDamage;
-
-        internal string NameProperty
-        {
-            set { _name = value; }
-        }
-
-        internal float DamageProperty
-        {
-            get { return _damage; }
-        }
-
-        internal float MinDamagePropery
-        {
-            set { _minDamage = value; }
-        }
-
-        internal float MaxDamagePropery
-        {
-            set { _maxDamage = value; }
-        }
-
-        public Weapon(string name)
-        {
-            this._name = name;
-        }
-
-        public Weapon(string name, float minDamage, float maxDamage)
-        {
-            this._name = name;
-            SetDamageParams(minDamage, maxDamage);
-        }
-
-        public Weapon()
-        {
-            this._name = "AK-74";
-        }
-
-        public void SetDamageParams(float minDamage, float maxDamage)
-        {
-            if(minDamage > maxDamage)
-            {
-                Console.WriteLine($"Некорректные входные данные {_name}!");
-            }
-            if(minDamage < 1f)
-            {
-                this._minDamage = 1f;
-                Console.WriteLine($"Форсированная установка минимального значения урона");
-            }
-            if (maxDamage <= 1f)
-            {
-                this._maxDamage = 10f;
-            }
-        }
-
-        public float GetDamage()
-        {
-            return (this._minDamage + this._maxDamage)/2;
-        }
-    }
-
-
-
-    public class Unit // Класс персонажа
-    {
-        private string _name;
-        private float _health;
-        private float _damage = 5f;
-        private float _fullDamage;
-        private float _armor;
-        private bool _weapon = true;
-
-        // Свойства.............................................................
-
-        internal string NameProperty // Принимаем имя
-        {
-            set { _name = value; }
-        }
-
-        internal float HealthProperty // Уровень здоровья
-        { 
-            get { return _health; }
-            set 
-            { 
-                if (value < 10f)
-                {
-                    _health = 10f;
-                    return;
-                }
-                if (value > 100f)
-                {
-                    _health = 100f;
-                    return;
-                }
-                _health = value;
-            }
-        }
-
-        internal float DamageProperty // Базовый урон плюс урон от оружия
-        {
-            get { return _damage; }
-            set 
-            {
-                if (_weapon)
-                {
-                    _fullDamage = _damage + value;
-                    return;
-                }
-            }
-        }
-
-        internal float ArmorProperty
-        {
-            get { return _armor; }
-            
-            set 
-            {
-                _armor += (float)Math.Round(value, 2); // Округленная сумма всей защиты из классов разной части брони
-
-                if (_armor < 0f)
-                {
-                    _armor = 0f;
-                    return;
-                }
-
-                if (_armor > 1f)
-                {
-                    _armor = 1f;
-                    return;
-                }
-            }
-        }
-
-        // Методы ......................................................................
-
-        public float Armor() // Общая броня
-        {
-            return _armor;
-        }
-
-        public float RealHealth() // Фактическое здоровье
-        {
-            return _health * (1f + _armor);
-        }
-
-        public bool SetDamage(bool dead) // Получить урон
-        {
-            _health = _health - _damage * _armor;
-
-            if (_health > 0f)
-            {
-                dead = false;
-                return dead;
-            }
-            if (_health <= 0f)
-            {
-                dead = true;
-                return dead;
-            }
-            return dead;
-        }
-
-        public void EquipWeapon(Weapon weapon) // Снарядить оружие
-        {
-            Weapon weaponTwo = new Weapon("Weapon02");
-            weapon = weaponTwo;
-            Console.WriteLine("Орудие заменено на новое.");
-        }
-
-        public void EquipWeapon(Helmet helmet) // Снарядить шлем
-        {
-            Helmet Two = new Helmet();
-            Two.name = "Helm02";
-            helmet = Two;
-        }
-
-        public void EquipWeapon(Shell shell) // Снарядить доспех
-        {
-            Shell Two = new Shell();
-            Two.name = "Shell02";
-            shell = Two;
-        }
-
-        public void EquipWeapon(Boots boots) // Снарядить ботинки
-        {
-            Boots Two = new Boots();
-            Two.name = "Boots02";
-            boots = Two;
-        }
-
-        public void InfoName()
-        {
-            Console.WriteLine($"\nПерсонаж: {this._name}\n");
-        }
-
-        public Unit(string name)
-        {
-            this._name = name;
-        }
-
-        public Unit()
-        {
-            this._name = "Unknown Unit";
-        }
-
-    }
-
-
-
     internal class Program
     {
+        static void FormulaUnitFloat(string text, float oneValue, float twoValue, float result)
+        {
+            float relust;
+
+            do
+            {
+                Console.Write($"{text}");
+
+                if (!float.TryParse(Console.ReadLine(), out float value))
+                {
+                    Console.WriteLine("Укажите цифры!");
+                    relust = -1f;
+                }
+                else
+                {
+                    relust = value;
+                }
+
+            }
+            while (relust > oneValue || relust < twoValue);
+
+        }
 
         static void Main(string[] args)
         {
-            Unit unit = new Unit();
-            Helmet helmet = new Helmet();
-            Shell shell = new Shell();  
-            Boots boots = new Boots();
-            Weapon weapon = new Weapon();
+            Console.WriteLine($"Подготовка к бою!");
 
-            Console.WriteLine("Подготовка к бою!\n");
+            //...............................................................................
 
-            Console.Write("Введите имя бойца: ");
-            unit.NameProperty = Console.ReadLine();
+            Console.Write($"Введите имя бойца: ");
+            string name = Console.ReadLine();
 
+            //...............................................................................
 
-            Console.Write("Введите начальное здоровье бойца (10-100): ");
-            unit.HealthProperty = float.Parse(Console.ReadLine());
+            float health = 0;
+            FormulaUnitFloat("\nВведите начальное здоровье бойца (10-100): ", 100f, 10f, health);
 
+            //do
+            //{
+            //    Console.Write($"\nВведите начальное здоровье бойца (10-100): ");
 
-            Console.Write("Введите значение брони шлема от 0, до 1: ");          
-            helmet.ArmorProperty = float.Parse(Console.ReadLine());
-            unit.ArmorProperty = helmet.Armor();
+            //    if(!float.TryParse(Console.ReadLine(), out float value))
+            //    {
+            //        Console.WriteLine("Укажите цифры!");
+            //        health = value;
+            //    }
+            //    else
+            //    {
+            //        health = value;
+            //    }
+  
+            //}
+            //while ( health > 100f || health < 10f ) ;
 
-            Console.Write("Введите значение брони кирасы от 0, до 1: ");
-            shell.ArmorProperty = float.Parse(Console.ReadLine());
-            unit.ArmorProperty = shell.Armor();
+            //...............................................................................
 
-            Console.Write("Введите значение брони сапог от 0, до 1: ");
-            boots.ArmorProperty = float.Parse(Console.ReadLine());
-            unit.ArmorProperty = boots.Armor();
+            var unit = new Unit(health, name);
 
-            Console.Write("Укажите минимальный урон оружия (0-20): ");
-            weapon.MinDamagePropery = float.Parse(Console.ReadLine());
+            //...............................................................................
 
-            Console.Write("Укажите максимальный урон оружия (20-40): ");
-            weapon.MaxDamagePropery = float.Parse(Console.ReadLine());
+            //Console.Write($"\nВведите значение брони шлема от 0, до 1: ");
+            //float armorHelm = float.Parse(Console.ReadLine());
+            //unit.ArmorError(armorHelm);
 
-            Console.WriteLine($"Общий показатель брони равен: {unit.Armor()}");
+            float armorHelm = 0;
+            FormulaUnitFloat("\nВведите значение брони шлема от 0, до 1: ", 1f, 0f, armorHelm);
+
+            //do
+            //{
+            //    Console.Write($"\nВведите значение брони шлема от 0, до 1: ");
+
+            //    if (!float.TryParse(Console.ReadLine(), out float value))
+            //    {
+            //        Console.WriteLine("Укажите цифры!");
+            //        armorHelm = -1f;
+            //    }
+            //    else
+            //    {
+            //        armorHelm = value;
+            //    }
+
+            //}
+            //while (armorHelm > 1f || armorHelm < 0f);
+
+            //...............................................................................
+
+            //Console.Write($"\nВведите значение брони кирасы от 0, до 1: ");
+            //float armorShell = float.Parse(Console.ReadLine());
+            //unit.ArmorError(armorShell);
+
+            float armorShell = 0;
+            FormulaUnitFloat("\nВведите значение брони кирасы от 0, до 1: ", 1f, 0f, armorShell);
+
+            //do
+            //{
+            //    Console.Write($"\nВведите значение брони кирасы от 0, до 1: ");
+
+            //    if (!float.TryParse(Console.ReadLine(), out float value))
+            //    {
+            //        Console.WriteLine("Укажите цифры!");
+            //        armorShell = -1f;
+            //    }
+            //    else
+            //    {
+            //        armorShell = value;
+            //    }
+
+            //}
+            //while (armorShell > 1f || armorShell < 0f);
+
+            //...............................................................................
+
+            //Console.Write($"\nВведите значение брони сапог от 0, до 1: ");
+            //float armorBoots = float.Parse(Console.ReadLine());
+            //unit.ArmorError(armorBoots);
+
+            float armorBoots = 0;
+            FormulaUnitFloat("\nВведите значение брони сапог от 0, до 1: ", 1f, 0f, armorBoots);
+
+            //do
+            //{
+            //    Console.Write($"\nВведите значение брони сапог от 0, до 1: ");
+
+            //    if (!float.TryParse(Console.ReadLine(), out float value))
+            //    {
+            //        Console.WriteLine("Укажите цифры!");
+            //        armorBoots = -1f;
+            //    }
+            //    else
+            //    {
+            //        armorBoots = value;
+            //    }
+
+            //}
+            //while (armorBoots > 1f || armorBoots < 0f);
+
+            //...............................................................................
+
+            var helm = new Helm(armorHelm);
+            var shell = new Shell(armorShell);
+            var boots = new Boots(armorBoots);
+
+            //...............................................................................
+
+            float minDamage = 0;
+            FormulaUnitFloat("\nУкажите минимальный урон оружия (0-20): ", 20f, 0f, minDamage);
+
+            //do
+            //{
+            //    Console.Write($"\nУкажите минимальный урон оружия (0-20): ");
+
+            //    if (!float.TryParse(Console.ReadLine(), out float value))
+            //    {
+            //        Console.WriteLine("Укажите цифры!");
+            //        minDamage = -1f;
+            //    }
+            //    else
+            //    {
+            //        minDamage = value;
+            //    }
+
+            //}
+            //while (minDamage > 20f || minDamage < 0f);
+
+            //...............................................................................
+
+            float maxDamage = 0;
+            FormulaUnitFloat("\nУкажите максимальный урон оружия (20-40): ", 40f, 20f, maxDamage);
+
+            //do
+            //{
+            //    Console.Write($"\nУкажите максимальный урон оружия (20-40): ");
+
+            //    if (!float.TryParse(Console.ReadLine(), out float value))
+            //    {
+            //        Console.WriteLine("Укажите цифры!");
+            //        maxDamage = value;
+            //    }
+            //    else
+            //    {
+            //        maxDamage = value;
+            //    }
+
+            //}
+            //while (maxDamage > 40f || maxDamage < 20f);
+
+            //...............................................................................
+
+            var weapons = new Weapon(minDamage, maxDamage);
+
+            //...............................................................................
+
+            Console.WriteLine("\nСнаряжаюсь...");
+
+            unit.EquipHelm(helm);
+            unit.EquipShell(shell); 
+            unit.EquipBoots(boots);
+            unit.EquipWeapon(weapons);
+
+            //...............................................................................
+
+            Console.WriteLine($"\nОбщий показатель брони равен: {unit.Armor}");
+
+            //...............................................................................
 
             Console.WriteLine($"Фактическое значение здоровья равно: {unit.RealHealth()}");
 
+            //...............................................................................
+
+            Console.WriteLine($"Средний урон из {weapons.Name}: {weapons.GetDamage()}");
+
+            //...............................................................................
+
+            Console.WriteLine($"Экиперованно: {weapons.Name}, {helm.Name}, {shell.Name}, {boots.Name}.");
+
+            //unit.Info();
 
 
         }

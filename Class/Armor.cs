@@ -6,143 +6,61 @@ using System.Threading.Tasks;
 
 namespace Class
 {
-    
 
-    public class Helmet
+    public class Helm
     {
-        public string name;
-        private float armor;
+        public string Name { get; }
 
-        internal float ArmorProperty
+        public float Armor { get; set; }
+
+        public Helm(string name = "Helm")
         {
-            get { return armor; }
-            set 
-            {
-                if (value > 1f)
-                {
-                    armor = 1f;
-                    return;
-                }
-                if (value < 0f)
-                {
-                    armor = 0f;
-                    return;
-                }
-                armor = value;
-            }
+            Name = name;
         }
 
-        public float Armor()
+        public Helm(float armor, string name = "Helm") : this(name)
         {
-            return armor;
+            Armor = armor;
         }
 
-        public void Info()
-        {
-            Console.WriteLine($"Броня {name} равна: {this.armor}");
-        }
-
-        public Helmet(string name)
-        {
-            this.name = name;
-        }
-
-        public Helmet()
-        {
-            this.name = "Helm";
-        }
     }
-
 
     public class Shell
     {
-        public string name;
-        private float armor;
+        public string Name { get; }
 
-        internal float ArmorProperty
+        public float Armor { get; set; }
+
+        public Shell(string name = "Shell")
         {
-            get { return armor; }
-            set
-            {
-                if (value > 1f)
-                {
-                    armor = 1f;
-                    return;
-                }
-                if (value < 0f)
-                {
-                    armor = 0f;
-                    return;
-                }
-                armor = value;
-            }
+            Name = name;
         }
 
-        public float Armor()
+        public Shell(float armor, string name = "Shell") : this(name)
         {
-            return armor;
-        }
-
-        public void Info()
-        {
-            Console.WriteLine($"Броня {name} равна: {this.armor}");
-        }
-
-        public Shell(string name)
-        {
-            this.name = name;
-        }
-
-        public Shell()
-        {
-            this.name = "Shell";
+            Armor = armor;
         }
     }
-
 
     public class Boots
     {
-        public string name;
-        private float armor;
+        public string Name { get; }
 
-        internal float ArmorProperty
+        public float Armor { get; set; }
+
+        public Boots(string name = "Boots")
         {
-            get { return armor; }
-            set
-            {
-                if (value > 1f)
-                {
-                    armor = 1f;
-                    return;
-                }
-                if (value < 0f)
-                {
-                    armor = 0f;
-                    return;
-                }
-                armor = value;
-            }
+            Name = name;
         }
 
-        public float Armor()
+        public Boots(float armor, string name = "Boots") : this(name)
         {
-            return armor;
-        }
-
-        public void Info()
-        {
-            Console.WriteLine($"Броня {name} равна: {this.armor}");
-        }
-
-        public Boots(string name)
-        {
-            this.name = name;
-        }
-
-        public Boots()
-        {
-            this.name = "Boots";
+            Armor = armor;
         }
     }
 
+    public class Armor
+    {
+
+    }
 }
