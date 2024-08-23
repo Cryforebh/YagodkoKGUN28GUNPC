@@ -15,29 +15,6 @@ namespace Class
 
     internal class Program
     {
-        static void FormulaUnitFloat(string text, float oneValue, float twoValue, float result)
-        {
-            float relust;
-
-            do
-            {
-                Console.Write($"{text}");
-
-                if (!float.TryParse(Console.ReadLine(), out float value))
-                {
-                    Console.WriteLine("Укажите цифры!");
-                    relust = -1f;
-                }
-                else
-                {
-                    relust = value;
-                }
-
-            }
-            while (relust > oneValue || relust < twoValue);
-
-        }
-
         static void Main(string[] args)
         {
             Console.WriteLine($"Подготовка к бою!");
