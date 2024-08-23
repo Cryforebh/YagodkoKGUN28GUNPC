@@ -145,9 +145,4 @@ namespace Class
         }
     }
 
-
-    internal class Armor
-    {
-
-    }
 }

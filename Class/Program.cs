@@ -97,6 +97,7 @@ namespace Class
 
         internal float HealthProperty // Уровень здоровья
         { 
+            get { return _health; }
             set 
             { 
                 if (value < 10f)
@@ -110,7 +111,6 @@ namespace Class
                     return;
                 }
                 _health = value;
-                return;
             }
         }
 
