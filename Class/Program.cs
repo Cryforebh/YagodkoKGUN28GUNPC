@@ -17,7 +17,7 @@ namespace Class
     {
         static void Main(string[] args)
         {
-            var formular = new Formular();
+            var templat = new Templates();
 
             Console.WriteLine($"Подготовка к бою!");
 
@@ -29,7 +29,7 @@ namespace Class
             //...............................................................................
 
             float health = 0;
-            formular.FormulaOne("\nВведите начальное здоровье бойца (10-100): ", 100f, 10f, ref health);
+            templat.LimitParametersInput("\nВведите начальное здоровье бойца (10-100): ", 100f, 10f, ref health);
 
             //...............................................................................
 
@@ -38,13 +38,13 @@ namespace Class
             //...............................................................................
 
             float armorHelm = 0;
-            formular.FormulaOne("\nВведите значение брони шлема от 0, до 1: ", 1f, 0f, ref armorHelm);
+            templat.LimitParametersInput("\nВведите значение брони шлема от 0, до 1: ", 1f, 0f, ref armorHelm);
 
             float armorShell = 0;
-            formular.FormulaOne("\nВведите значение брони кирасы от 0, до 1: ", 1f, 0f, ref armorShell);
+            templat.LimitParametersInput("\nВведите значение брони кирасы от 0, до 1: ", 1f, 0f, ref armorShell);
 
             float armorBoots = 0;
-            formular.FormulaOne("\nВведите значение брони сапог от 0, до 1: ", 1f, 0f, ref armorBoots);
+            templat.LimitParametersInput("\nВведите значение брони сапог от 0, до 1: ", 1f, 0f, ref armorBoots);
 
             //...............................................................................
 
@@ -55,12 +55,12 @@ namespace Class
             //...............................................................................
 
             float minDamage = 0;
-            formular.FormulaOne("\nУкажите минимальный урон оружия (0-20): ", 20f, 0f, ref minDamage);
+            templat.LimitParametersInput("\nУкажите минимальный урон оружия (0-20): ", 20f, 0f, ref minDamage);
 
             //...............................................................................
 
             float maxDamage = 0;
-            formular.FormulaOne("\nУкажите максимальный урон оружия (20-40): ", 40f, 20f, ref maxDamage);
+            templat.LimitParametersInput("\nУкажите максимальный урон оружия (20-40): ", 40f, 20f, ref maxDamage);
 
             //...............................................................................
 

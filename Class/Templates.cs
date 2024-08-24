@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Class
 {
-    internal class Formular
+    internal class Templates
     {
         /// <summary>
-        /// Позволяет сократить код, от дублирования логических операций. Возвращает result.
+        /// Позволяет сократить код, от дублирования логических операций с ограниченными диапозонами параметров ввода. Возвращает result.
         /// </summary>
         /// <param name="text">Выводимый в консоль текст</param>
         /// <param name="oneValue">Максимальное значение</param>
         /// <param name="twoValue">Минимальное значение</param>
         /// <param name="result">Результат ввода ( Console.ReadLine() )</param>
-        public float FormulaOne(string text, float oneValue, float twoValue, ref float result)
+        public float LimitParametersInput(string text, float oneValue, float twoValue, ref float result)
         {
             do
             {
