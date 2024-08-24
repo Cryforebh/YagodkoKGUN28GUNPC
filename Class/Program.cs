@@ -17,6 +17,8 @@ namespace Class
     {
         static void Main(string[] args)
         {
+            var formular = new Formular();
+
             Console.WriteLine($"Подготовка к бою!");
 
             //...............................................................................
@@ -26,24 +28,8 @@ namespace Class
 
             //...............................................................................
 
-            float health;
-
-            do
-            {
-                Console.Write($"\nВведите начальное здоровье бойца (10-100): ");
-
-                if (!float.TryParse(Console.ReadLine(), out float value))
-                {
-                    Console.WriteLine("Укажите цифры!");
-                    health = value;
-                }
-                else
-                {
-                    health = value;
-                }
-
-            }
-            while (health > 100f || health < 10f);
+            float health = 0;
+            formular.FormulaOne("\nВведите начальное здоровье бойца (10-100): ", 100f, 10f, ref health);
 
             //...............................................................................
 
@@ -51,66 +37,14 @@ namespace Class
 
             //...............................................................................
 
-            float armorHelm;
+            float armorHelm = 0;
+            formular.FormulaOne("\nВведите значение брони шлема от 0, до 1: ", 1f, 0f, ref armorHelm);
 
-            do
-            {
-                Console.Write($"\nВведите значение брони шлема от 0, до 1: ");
+            float armorShell = 0;
+            formular.FormulaOne("\nВведите значение брони кирасы от 0, до 1: ", 1f, 0f, ref armorShell);
 
-                if (!float.TryParse(Console.ReadLine(), out float value))
-                {
-                    Console.WriteLine("Укажите цифры!");
-                    armorHelm = -1f;
-                }
-                else
-                {
-                    armorHelm = value;
-                }
-
-            }
-            while (armorHelm > 1f || armorHelm < 0f);
-
-            //...............................................................................
-
-            float armorShell;
-
-            do
-            {
-                Console.Write($"\nВведите значение брони кирасы от 0, до 1: ");
-
-                if (!float.TryParse(Console.ReadLine(), out float value))
-                {
-                    Console.WriteLine("Укажите цифры!");
-                    armorShell = -1f;
-                }
-                else
-                {
-                    armorShell = value;
-                }
-
-            }
-            while (armorShell > 1f || armorShell < 0f);
-
-            //...............................................................................
-
-            float armorBoots;
-
-            do
-            {
-                Console.Write($"\nВведите значение брони сапог от 0, до 1: ");
-
-                if (!float.TryParse(Console.ReadLine(), out float value))
-                {
-                    Console.WriteLine("Укажите цифры!");
-                    armorBoots = -1f;
-                }
-                else
-                {
-                    armorBoots = value;
-                }
-
-            }
-            while (armorBoots > 1f || armorBoots < 0f);
+            float armorBoots = 0;
+            formular.FormulaOne("\nВведите значение брони сапог от 0, до 1: ", 1f, 0f, ref armorBoots);
 
             //...............................................................................
 
@@ -120,45 +54,13 @@ namespace Class
 
             //...............................................................................
 
-            float minDamage;
-
-            do
-            {
-                Console.Write($"\nУкажите минимальный урон оружия (0-20): ");
-
-                if (!float.TryParse(Console.ReadLine(), out float value))
-                {
-                    Console.WriteLine("Укажите цифры!");
-                    minDamage = -1f;
-                }
-                else
-                {
-                    minDamage = value;
-                }
-
-            }
-            while (minDamage > 20f || minDamage < 0f);
+            float minDamage = 0;
+            formular.FormulaOne("\nУкажите минимальный урон оружия (0-20): ", 20f, 0f, ref minDamage);
 
             //...............................................................................
 
-            float maxDamage;
-
-            do
-            {
-                Console.Write($"\nУкажите максимальный урон оружия (20-40): ");
-
-                if (!float.TryParse(Console.ReadLine(), out float value))
-                {
-                    Console.WriteLine("Укажите цифры!");
-                    maxDamage = value;
-                }
-                else
-                {
-                    maxDamage = value;
-                }
-
-            }
-            while (maxDamage > 40f || maxDamage < 20f);
+            float maxDamage = 0;
+            formular.FormulaOne("\nУкажите максимальный урон оружия (20-40): ", 40f, 20f, ref maxDamage);
 
             //...............................................................................
 
@@ -187,7 +89,7 @@ namespace Class
 
             //...............................................................................
 
-            Console.WriteLine($"Экиперованно: {weapons.Name}, {helm.Name}, {shell.Name}, {boots.Name}.");
+            Console.WriteLine($"Экипировано: {weapons.Name}, {helm.Name}, {shell.Name}, {boots.Name}.");
         }
 
     }
