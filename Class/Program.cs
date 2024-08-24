@@ -17,8 +17,6 @@ namespace Class
     {
         static void Main(string[] args)
         {
-            var templat = new Templates();
-
             Console.WriteLine($"Подготовка к бою!");
 
             //...............................................................................
@@ -28,8 +26,7 @@ namespace Class
 
             //...............................................................................
 
-            float health = 0;
-            templat.LimitParametersInput("\nВведите начальное здоровье бойца (10-100): ", 100f, 10f, ref health);
+            Templates.LimitParametersInput("\nВведите начальное здоровье бойца (10-100): ", 100f, 10f, out float health);
 
             //...............................................................................
 
@@ -37,14 +34,11 @@ namespace Class
 
             //...............................................................................
 
-            float armorHelm = 0;
-            templat.LimitParametersInput("\nВведите значение брони шлема от 0, до 1: ", 1f, 0f, ref armorHelm);
+            Templates.LimitParametersInput("\nВведите значение брони шлема от 0, до 1: ", 1f, 0f, out float armorHelm);
 
-            float armorShell = 0;
-            templat.LimitParametersInput("\nВведите значение брони кирасы от 0, до 1: ", 1f, 0f, ref armorShell);
+            Templates.LimitParametersInput("\nВведите значение брони кирасы от 0, до 1: ", 1f, 0f, out float armorShell);
 
-            float armorBoots = 0;
-            templat.LimitParametersInput("\nВведите значение брони сапог от 0, до 1: ", 1f, 0f, ref armorBoots);
+            Templates.LimitParametersInput("\nВведите значение брони сапог от 0, до 1: ", 1f, 0f, out float armorBoots);
 
             //...............................................................................
 
@@ -54,13 +48,11 @@ namespace Class
 
             //...............................................................................
 
-            float minDamage = 0;
-            templat.LimitParametersInput("\nУкажите минимальный урон оружия (0-20): ", 20f, 0f, ref minDamage);
+            Templates.LimitParametersInput("\nУкажите минимальный урон оружия (0-20): ", 20f, 0f, out float minDamage);
 
             //...............................................................................
 
-            float maxDamage = 0;
-            templat.LimitParametersInput("\nУкажите максимальный урон оружия (20-40): ", 40f, 20f, ref maxDamage);
+            Templates.LimitParametersInput("\nУкажите максимальный урон оружия (20-40): ", 40f, 20f, out float maxDamage);
 
             //...............................................................................
 

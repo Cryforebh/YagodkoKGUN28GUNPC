@@ -15,7 +15,7 @@ namespace Class
         /// <param name="oneValue">Максимальное значение</param>
         /// <param name="twoValue">Минимальное значение</param>
         /// <param name="result">Результат ввода ( Console.ReadLine() )</param>
-        public float LimitParametersInput(string text, float oneValue, float twoValue, ref float result)
+        public static float LimitParametersInput(string text, float oneValue, float twoValue, out float result)
         {
             do
             {
