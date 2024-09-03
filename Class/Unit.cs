@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -15,10 +16,6 @@ namespace Class
         private Helm _helm;
         private Shell _shell;
         private Boots _boots;
-        private bool _weaponEquip = false;
-        private bool _helmEquip = false;
-        private bool _shellEquip = false;
-        private bool _bootsEquip = false;
         private float _weaponDamage;
 
         public string Name { get; }
@@ -29,7 +26,7 @@ namespace Class
         {
             get
             {
-                if (_weaponEquip)
+                if (_weapon != null)
                 {
                     return _baseDamage + _weaponDamage; // возвращаем сумму базового урона и урона от оружия если оно есть
                 }
@@ -42,8 +39,24 @@ namespace Class
         {
             get
             {
-                
-                float value = _helm.Armor + _shell.Armor + _boots.Armor;
+                float value = 0;
+
+                if (_helm != null)
+                {
+                    value += _helm.Armor;
+                }
+
+                if (_shell != null)
+                {
+                    value += _shell.Armor;
+                }
+
+                if (_boots != null)
+                {
+                    value += _boots.Armor;
+                }
+
+
                 if (value > 1f)
                 {
                     return 1f;
@@ -90,28 +103,24 @@ namespace Class
 
         public void EquipWeapon(Weapon weapon) // Снарядить Weapon | Замена оружия на новое
         {
-            _weaponEquip = true;
             _weapon = weapon;
             Console.WriteLine($"{_weapon.Name} - экипировано!");
         }
 
         public void EquipHelm(Helm helm) // Снарядить Helm
         {
-            _helmEquip = true;
             _helm = helm;
             Console.WriteLine($"{_helm.Name} - экипировано!");
         }
 
         public void EquipShell(Shell shell) // Снарядить Shell
         {
-            _shellEquip = true;
             _shell = shell;
             Console.WriteLine($"{_shell.Name} - экипировано!");
         }
 
         public void EquipBoots(Boots boots) // Снарядить Boots
         {
-            _bootsEquip = true;
             _boots = boots;
             Console.WriteLine($"{_boots.Name} - экипировано!");
         }

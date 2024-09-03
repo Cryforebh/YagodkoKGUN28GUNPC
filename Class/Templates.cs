@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Class
 {
-    internal class Templates
+    internal struct Templates
     {
         /// <summary>
         /// Позволяет сократить код, от дублирования логических операций с ограниченными диапозонами параметров ввода. Возвращает result.
