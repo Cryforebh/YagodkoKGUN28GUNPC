@@ -77,11 +77,11 @@ namespace Class
         
         public void StartCombat(Unit unit1, Unit unit2)
         {
-            Random random = new Random();
-            var randomInt = random.Next(1, 10);
-
             do
             {
+                Random random = new Random();
+                var randomInt = random.Next(1, 10);
+
                 Rate rate = new Rate();
 
                 if (randomInt % 2 == 0)
@@ -96,7 +96,7 @@ namespace Class
                 }
                 rates.Add(rate);
             } 
-            while (unit2.Health <= 0 || unit1.Health <= 0);
+            while (unit2.Health > 0 || unit1.Health > 0);
 
         }
 
