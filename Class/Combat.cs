@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Class
 {
-    public struct Interval
+    public class Interval
     {
         
         public Interval(int minValue, int maxValue) : this((float)minValue,(float)maxValue)
@@ -44,11 +45,11 @@ namespace Class
 
         public int Average => AverageInt(Min, Max); // возвращает средне арифметическое значение интервала;
 
+        static Random random = new Random();
+
         public int IntervalRandom(int min, int max)
         {
-            Random random = new Random();
-
-            return random.Next(min, max);
+            return random.Next(min, max + 1);
         }
 
         public int AverageInt(int min, int max)
@@ -77,27 +78,26 @@ namespace Class
         
         public void StartCombat(Unit unit1, Unit unit2)
         {
+            Random random = new Random();
             do
             {
-                Random random = new Random();
-                var randomInt = random.Next(1, 10);
+                var randomInt = random.Next(1, 20);
 
-                Rate rate = new Rate();
+                Rate rate;
 
                 if (randomInt % 2 == 0)
                 {
-                    unit1.SetDamage(unit2.Damage);
-                    rate = new Rate(unit1, unit2.Damage, unit2.Health);
+                    unit2.SetDamage(unit1.Damage);
+                    rate = new Rate(unit1, unit1.Damage, unit2.Health);
                 }
                 else
                 {
-                    unit2.SetDamage(unit1.Damage);
-                    rate = new Rate(unit2, unit1.Damage, unit1.Health);
+                    unit1.SetDamage(unit2.Damage);
+                    rate = new Rate(unit2, unit2.Damage, unit1.Health);
                 }
                 rates.Add(rate);
             } 
-            while (unit2.Health > 0 || unit1.Health > 0);
-
+            while (unit2.Health > 0 && unit1.Health > 0);
         }
 
         public void ShowResults()
@@ -105,6 +105,7 @@ namespace Class
             foreach (Rate rate in rates)
             {
                 Console.WriteLine($"Боец {rate.Unit.Name} нанёс урон {rate.Damage} и оставил {rate.Health} здоровья.");
+                //rate.Unit.DamageSkip();
             }
             
         }

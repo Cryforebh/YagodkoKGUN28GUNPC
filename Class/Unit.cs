@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Class
 {
@@ -16,7 +17,6 @@ namespace Class
         private Helm _helm;
         private Shell _shell;
         private Boots _boots;
-        private float _weaponDamage;
 
         public string Name { get; }
 
@@ -28,11 +28,10 @@ namespace Class
             {
                 if (_weapon != null)
                 {
-                    return _baseDamage + _weaponDamage; // возвращаем сумму базового урона и урона от оружия если оно есть
+                    return _baseDamage + _weapon.GetDamageInterval(); // возвращаем сумму базового урона и урона от оружия если оно есть
                 }
                 else { return _baseDamage; }
             }
-            set { _weaponDamage = value; } // принимаем урон от оружия в переменную WeaponDamag
         }
 
         public float Armor
@@ -61,7 +60,7 @@ namespace Class
                 {
                     return 1f;
                 }
-                else if (value < 0f)
+                else if (value <= 0f)
                 {
                     return 0f;
                 }
@@ -92,7 +91,7 @@ namespace Class
 
         public bool SetDamage(float damage)
         {
-            _health = Health - damage * Armor;
+            _health = Health - damage / (1f + Armor);
 
             if (Health <= 0f)
             {
@@ -123,6 +122,12 @@ namespace Class
         {
             _boots = boots;
             Console.WriteLine($"{_boots.Name} - экипировано!");
+        }
+
+        public void DamageSkip()
+        {
+            var damageSkip = Damage - (Damage / (1f + Armor));
+            Console.WriteLine($"Поглащенно урона - {damageSkip}.\n");
         }
 
         public void Info()

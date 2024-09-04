@@ -57,10 +57,6 @@ namespace Class
 
             //...............................................................................
 
-
-
-            //...............................................................................
-
             Console.WriteLine("\nБойцы снаряжаются...");
 
             //...............................................................................
@@ -89,20 +85,27 @@ namespace Class
 
             //...............................................................................
 
-            var interval = new Interval(minDamage, maxDamage);
             var combat = new Combat();
 
             //...............................................................................
 
-            Console.WriteLine("\nБой начинается!");
+            Console.WriteLine("\nБой начинается!\n");
 
             combat.StartCombat(unitOne, unitTwo);
             combat.ShowResults();
 
             Console.WriteLine("\nБой завершен!");
+
+            if (unitTwo.Health <= 0)
+            {
+                Console.WriteLine($"\n{unitOne.Name} становится победителем!");
+            }
+            else if (unitOne.Health <= 0)
+            {
+                Console.WriteLine($"\n{unitTwo.Name} становится победителем!");
+            }
+
+            Console.ReadLine();
         }
-
     }
-
-
 }

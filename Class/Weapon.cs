@@ -8,6 +8,7 @@ namespace Class
 {
     public class Weapon
     {
+        private Interval _interval;
         private float _minDamage;
         private float _maxDamage;
 
@@ -45,10 +46,8 @@ namespace Class
         {
             if (minDamage > maxDamage)
             {
-                var min = maxDamage;
-                var max = minDamage;
-                _minDamage = min;
-                _maxDamage = max;
+                _minDamage = maxDamage;
+                _maxDamage = minDamage;
 
                 Console.WriteLine($"У {Name} не корректно указанны показатели урона, введеные параметры поменяны местами:\nМин. урон = {_minDamage}, а Макс. урон = {_maxDamage}.");
             }
@@ -68,6 +67,12 @@ namespace Class
         public float GetDamage() 
         {
             return (_maxDamage + _minDamage) / 2;
+        }
+
+        public float GetDamageInterval()
+        {
+            _interval = new Interval(_minDamage, _maxDamage);
+            return _interval.Get;
         }
     }
 
