@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Class
 {
-    public class Interval
+    public struct Interval
     {
         
         public Interval(int minValue, int maxValue) : this((float)minValue,(float)maxValue)
